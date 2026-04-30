@@ -1,0 +1,65 @@
+class Splash {
+
+  constructor() {
+    this.splashBorder = 100;
+    this.visible = true;
+  }
+
+  show() {
+
+    background(255);
+
+    fill(255);
+    stroke(255, 0, 0);
+    rect(
+      this.splashBorder,
+      this.splashBorder,
+      windowWidth - this.splashBorder * 2,
+      windowHeight - this.splashBorder * 2
+    );
+
+    strokeWeight(3);
+    stroke(0, 0, 222);
+
+    line(windowWidth - this.splashBorder - 40, this.splashBorder + 20,
+         windowWidth - this.splashBorder - 20, this.splashBorder + 40);
+
+    line(windowWidth - this.splashBorder - 20, this.splashBorder + 20,
+         windowWidth - this.splashBorder - 40, this.splashBorder + 40);
+
+    if (!this.title) {
+      this.title = createDiv("Interactive Audio Visualizer");
+      this.title.style('color:deeppink');
+      this.title.style('font-family: Arial, Helvetica, sans-serif');
+      this.title.position(this.splashBorder + 20, this.splashBorder + 20);
+
+      this.name = createDiv("Zoe Shack");
+      this.name.position(this.splashBorder + 20, this.splashBorder + 60);
+
+      this.info = createDiv(
+        "For my final project, I will create an interactive music-based web application that allows users to play simple melodies using their computer keyboard, similar to a digital piano. Each key will trigger a different musical pitch, allowing users to experiment with creating melodies. In addition to the sound component, the project will include a real-time audio-visualizer that responds to the audio being played. The visuals will change based on the pitch, creating movement and color changes that reflect the music. <p><a href='https://editor.p5js.org/'>view code</a>"
+      );
+
+      this.info.position(this.splashBorder + 20, this.splashBorder + 100);
+      this.info.size(windowWidth - this.splashBorder * 2 - 50,
+                     windowHeight - this.splashBorder * 2 - 50);
+    }
+  }
+
+  update() {
+    if (
+      mouseX > windowWidth - this.splashBorder - 40 &&
+      mouseX < windowWidth - this.splashBorder - 20 &&
+      mouseY < this.splashBorder + 40 &&
+      mouseY > this.splashBorder + 20
+    ) {
+      return true;
+    }
+  }
+
+  hide() {
+    if (this.title) this.title.remove();
+    if (this.name) this.name.remove();
+    if (this.info) this.info.remove();
+  }
+}
